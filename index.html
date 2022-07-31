@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link href="https://fonts.googleapis.com/css?family=Damion" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,600,700" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
   <link rel="stylesheet" href="./resources/css/reset.css">
   <link rel="stylesheet" href="./resources/css/style.css">
   <title>The Happenings Map</title>
@@ -32,6 +33,59 @@
       </nav>
     </div>
   </header>
+
+  <div id="map"></div>
+  <script>
+    var map = L.map('map').setView([-26.155438, 23.466797],5);
+
+    var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+
+    var orangeIcon = L.icon({
+      iconUrl: './resources/images/leaf-orange.png',
+      shadowUrl: './resources/images/leaf-shadow.png',
+
+      iconSize:     [38, 95], // size of the icon
+      shadowSize:   [50, 64], // size of the shadow
+      iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+
+    var redIcon = L.icon({
+      iconUrl: './resources/images/leaf-red.png',
+      shadowUrl: './resources/images/leaf-shadow.png',
+
+      iconSize:     [38, 95], // size of the icon
+      shadowSize:   [50, 64], // size of the shadow
+      iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+
+    var greenIcon = L.icon({
+      iconUrl: './resources/images/leaf-green.png',
+      shadowUrl: './resources/images/leaf-shadow.png',
+
+      iconSize:     [38, 95], // size of the icon
+      shadowSize:   [50, 64], // size of the shadow
+      iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+
+    L.marker([-22.25067,26.72552], {icon: orangeIcon}).addTo(map).bindPopup("Mokongwa Campsite (Khama Rhino Sanctuary)");;
+    L.marker([-20.45577,24.51673], {icon: orangeIcon}).addTo(map).bindPopup("Khumaga Campsite (Makgadikgadi Pans National Park)");;
+    L.marker([-24.060140,27.5848], {icon: orangeIcon}).addTo(map).bindPopup("Matamba Bush Campsite");
+
+    L.marker([-22.28245,19.99103], {icon: redIcon}).addTo(map).bindPopup("East Gate Rest Camp");
+    L.marker([-26.37838,18.48477], {icon: redIcon}).addTo(map).bindPopup("Mesosaurus Fossil Camp");
+
+    L.marker([-32.24589,20.09822], {icon: greenIcon}).addTo(map).bindPopup("Perdekloof Campsite (Tankwa Karoo National Park)");
+  </script>
 
   <!-- Footer -->
   <footer>
